@@ -24,7 +24,7 @@ func main() {
 	}
 
 	http.HandleFunc("/swagger.json", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "./protogen/golang/swagger/your_service.swagger.json")
+		http.ServeFile(w, r, "../protogen/golang/swagger/myservice/your_service.swagger.json")
 	})
 
 	fs := http.FileServer(http.Dir("./swagger-ui"))
