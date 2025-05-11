@@ -12,8 +12,8 @@ services:
 
   swagger:
     image: nginx:alpine
-    volumes:
-      - ./swagger-ui:/usr/share/nginx/html:ro
+    # volumes:
+    #   - ./swagger-ui:/usr/share/nginx/html:ro
     ports:
       - "7070:7070"
     networks:
