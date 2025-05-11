@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package your.service.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "gateway-service/protogen/golang/your/service/v1;v1";
+
+message StringMessage {
+  string value = 1;
+}
+
+service YourService {
+  rpc Echo(StringMessage) returns (StringMessage) {
+    option (google.api.http) = {
+      post: "/v1/echo"
+      body: "*"
+    };
+  }
+}
