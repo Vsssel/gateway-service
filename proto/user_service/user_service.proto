@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "gateway/proto";
+
+// Импорты
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "User Service"
+    version: "1.0"
+  }
+  security_definitions: {
+    security: {
+      key: "BearerAuth"
+      value: {
+        type: TYPE_API_KEY
+        in: IN_HEADER
+        name: "Authorization"
+        description: "Bearer token authentication"
+      }
+    }
+  }
+  security: {
+    security_requirement: {
+      key: "BearerAuth"
+      value: {}
+    }
+  }
+};
+
+message RegisterRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+  int32 role_id = 4;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message EditUserRequest {
+  string password = 1;
+}
+
+message UserIdRequest {
+  int32 user_id = 1;
+}
+
+message MessageResponse {
+  string message = 1;
+}
+
+message AuthResponse {
+  string access_token = 1;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string username = 2;
+  string email = 3;
+  int32 role_id = 4;
+}
+
+message UsersResponse {
+  repeated UserResponse users = 1;
+}
+
+service UserService {
+  rpc Register(RegisterRequest) returns (AuthResponse) {
+    option (google.api.http) = {
+      post: "/register"
+      body: "*"
+    };
+  }
+
+  rpc Login(LoginRequest) returns (AuthResponse) {
+    option (google.api.http) = {
+      post: "/login"
+      body: "*"
+    };
+  }
+
+  rpc DeleteAccount(google.protobuf.Empty) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/delete"
+      body: "*"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "BearerAuth"
+          value: {}
+        }
+      }
+    };
+  }
+
+  rpc EditAccount(EditUserRequest) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/edit"
+      body: "*"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "BearerAuth"
+          value: {}
+        }
+      }
+    };
+  }
+
+  rpc Logout(google.protobuf.Empty) returns (MessageResponse) {
+    option (google.api.http) = {
+      post: "/logout"
+      body: "*"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "BearerAuth"
+          value: {}
+        }
+      }
+    };
+  }
+
+  rpc GetUserById(UserIdRequest) returns (UserResponse) {
+    option (google.api.http) = {
+      get: "/users/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "BearerAuth"
+          value: {}
+        }
+      }
+    };
+  }
+
+  rpc GetAllUsers(google.protobuf.Empty) returns (UsersResponse) {
+    option (google.api.http) = {
+      get: "/users"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "BearerAuth"
+          value: {}
+        }
+      }
+    };
+  }
+}

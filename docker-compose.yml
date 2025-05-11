@@ -1,0 +1,15 @@
+services:
+  gateway:
+    build: .
+    ports:
+      - "7088:7088"   # gRPC Gateway (REST)
+      - "7089:7089"   # gRPC
+      - "7090:7090"     # Swagger UI
+    volumes:
+      - ./swagger-ui:/usr/share/nginx/html:ro
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
