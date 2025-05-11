@@ -9,7 +9,7 @@ import (
 )
 
 type GRPCClients struct {
-	UserService UserServiceClient
+	UserService UserService
 	// Добавьте другие сервисы по аналогии
 }
 
