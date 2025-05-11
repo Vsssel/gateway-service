@@ -10,6 +10,15 @@ services:
     networks:
       - app_net
 
+  swagger:
+    image: nginx:alpine
+    volumes:
+      - ./swagger-ui:/usr/share/nginx/html:ro
+    ports:
+      - "7070:7070"
+    networks:
+      - app_net
+
 networks:
   app_net:
     driver: bridge
