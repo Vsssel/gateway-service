@@ -5,11 +5,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	usersvc "gateway/protogen/golang/user_service"
+	"gateway/middleware"
+	_ "gateway/middleware"
 	ordersvc "gateway/protogen/golang/order_service"
 	product "gateway/protogen/golang/product_service"
-	_"gateway/middleware"
+	usersvc "gateway/protogen/golang/user_service"
+
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 )
 
@@ -26,15 +28,15 @@ func main() {
 		log.Fatalf("Failed to register UserService gRPC handler: %v", err)
 	}
 
-	if err := ordersvc.RegisterOrderServiceHandlerFromEndpoint(ctx, mux, "localhost:50053", opts); err != nil {
+	if err := ordersvc.RegisterOrderServiceHandlerFromEndpoint(ctx, mux, "46.101.215.10:50053", opts); err != nil {
 		log.Fatalf("Failed to register OrderService gRPC handler: %v", err)
 	}
 
-	if err := ordersvc.RegisterResourceServiceHandlerFromEndpoint(ctx, mux, "localhost:50053", opts); err != nil {
+	if err := ordersvc.RegisterResourceServiceHandlerFromEndpoint(ctx, mux, "46.101.215.10:50053", opts); err != nil {
 		log.Fatalf("Failed to register OrderService gRPC handler: %v", err)
 	}
 
-	if err := product.RegisterProductCatalogServiceHandlerFromEndpoint(ctx, mux, "localhost:9090", opts); err != nil {
+	if err := product.RegisterProductCatalogServiceHandlerFromEndpoint(ctx, mux, "46.101.215.10:3001", opts); err != nil {
 		log.Fatalf("Failed to register OrderService gRPC handler: %v", err)
 	}
 
@@ -44,7 +46,7 @@ func main() {
 		http.ServeFile(w, r, "./protogen/golang/swagger/swagger.swagger.json")
 	})
 
-	http.Handle("/", mux)
+	http.Handle("/", middleware.AuthMiddleware(mux))
 
 	log.Println("HTTP Gateway запущен на :2222")
 	log.Fatal(http.ListenAndServe(":2222", nil))
