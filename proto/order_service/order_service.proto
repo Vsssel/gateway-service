@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "gateway/proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+service OrderService {
+  rpc Preview (PreviewRequest) returns (PreviewResponse) {
+    option (google.api.http) = {
+      post: "/preview"
+      body: "*"
+    };
+  };
+
+  rpc Order (OrderRequest) returns (OrderResponse) {
+    option (google.api.http) = {
+      post: "/order"
+      body: "*"
+    };
+  };
+
+  rpc Info (IdRequest) returns (OrderInfoResponse) {
+    option (google.api.http) = {
+      get: "/info/{id}"
+    };
+  }
+}
+
+service ResourceService {
+  rpc Countries (google.protobuf.Empty) returns (CountriesResponse) {
+    option (google.api.http) = {
+      get: "/countries"
+    };
+  }
+
+  rpc CouriersForCountry (IdRequest) returns (CouriersForCountryResponse) {
+    option (google.api.http) = {
+      get: "/countries/{id}/couriers"
+    };
+  }
+}
+
+message IdRequest {
+  uint32 id = 1;
+}
+
+message Price {
+  string wei = 1;
+  float eth = 2;
+}
+
+message PreviewRequest {
+  uint32 productId = 1;
+  uint32 amount = 2;
+  uint32 countryId = 3;
+  uint32 courierCompanyId = 4;
+}
+
+message PreviewResponse {
+  string producerWalletAddress = 1;
+  string courierWalletAddress = 2;
+  Price productsPrice = 3;
+  Price deliveryPrice = 4;
+  Price totalPrice = 5;
+  google.protobuf.Timestamp deliveryDate = 6;
+}
+
+message OrderRequest {
+  string authToken = 1;
+  uint32 productId = 2;
+  uint32 amount = 3;
+  uint32 countryId = 4;
+  string city = 5;
+  string postalCode = 6;
+  uint32 courierCompanyId = 7;
+  string walletPrivateKey = 8;
+}
+
+message OrderResponse {
+  uint32 id = 1;
+  string productsPaymentHex = 2;
+  string deliveryPaymentHex = 3;
+  google.protobuf.Timestamp deliveryDate = 4;
+  Price price = 5;
+}
+
+message OrderInfoResponse {
+  uint32 id = 1;
+  uint32 productId = 2;
+  uint32 amount = 3;
+  uint32 countryId = 4;
+  string city = 5;
+  string postalCode = 6;
+  uint32 courierCompanyId = 7;
+  string productsPaymentHex = 8;
+  string deliveryPaymentHex = 9;
+  google.protobuf.Timestamp deliveryDate = 10;
+  bool delivered = 11;
+  Price price = 12;
+}
+
+message CountriesResponse {
+  repeated Country countries = 1;
+}
+
+message Country {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message CouriersForCountryResponse {
+  repeated CourierCompany companies = 1;
+}
+
+message CourierCompany {
+  uint32 id = 1;
+  string name = 2;
+  Price deliveryPrice = 3;
+}

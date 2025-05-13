@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+package product.v1;
+
+option go_package = "gateway/proto";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+message Category {
+  int64 id = 1;
+  string name = 2;
+  optional string description = 3;
+  optional int64 parent_category_id = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message Product {
+  int64 id = 1;
+  string name = 2;
+  optional string description = 3;
+  string sku = 4;
+  double price = 5;
+  int32 stock_quantity = 6;
+  optional int64 category_id = 7;
+  optional string image_url = 8;
+  bool is_active = 9;
+  optional google.protobuf.Struct attributes = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+}
+
+message ErrorResponse {
+  int32 code = 1;
+  string message = 2;
+}
+
+// Request message for pagination
+message PageInfoRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+
+// Response message for pagination
+message PageInfoResponse {
+  string next_page_token = 1;
+  int32 total_size = 2;
+}
+
+// Represents an empty request or response.
+message Empty {}
+
+// Represents a request with a single ID.
+message IdRequest {
+  int64 id = 1;
+}
+
+// Represents a response indicating success.
+message SuccessResponse {
+  bool success = 1;
+  optional string message = 2;
+}
+
+
+service ProductCatalogService {
+  rpc GetProductDetails(GetProductDetailsRequest) returns (GetProductDetailsResponse) {
+    option (google.api.http) = {
+      get: "/products/{product_id}"
+    };
+  }
+
+  rpc ListProductsInternal(ListProductsInternalRequest) returns (ListProductsInternalResponse) {
+    option (google.api.http) = {
+      get: "/products"
+    };
+  }
+
+  rpc UpdateStock(UpdateStockRequest) returns (UpdateStockResponse) {
+    option (google.api.http) = {
+      post: "/stock"
+      body: "*"
+    };
+  }
+
+  rpc GetCategoryDetails(GetCategoryDetailsRequest) returns (GetCategoryDetailsResponse) {
+    option (google.api.http) = {
+      get: "/categories/{category_id}"
+    };
+  }
+
+  rpc ListCategoriesInternal(ListCategoriesInternalRequest) returns (ListCategoriesInternalResponse) {
+    option (google.api.http) = {
+      get: "/categories"
+    };
+  }
+
+  rpc CheckProductsAvailability(CheckProductsAvailabilityRequest) returns (CheckProductsAvailabilityResponse) {
+    option (google.api.http) = {
+      post: "/products/availability"
+      body: "*"
+    };
+  }
+}
+
+message GetProductDetailsRequest {
+  int64 product_id = 1;
+}
+
+message GetProductDetailsResponse {
+  Product product = 1;
+}
+
+message ListProductsInternalRequest {
+  PageInfoRequest page_info = 1;
+  optional int64 category_id = 2;
+  repeated int64 product_ids = 3;
+  optional bool include_inactive = 4;
+}
+
+message ListProductsInternalResponse {
+  repeated Product products = 1;
+  PageInfoResponse page_info = 2;
+}
+
+message StockUpdateItem {
+  int64 product_id = 1;
+  int32 quantity_change = 2;
+}
+
+message UpdateStockRequest {
+  repeated StockUpdateItem items = 1;
+  optional string order_id = 2;
+}
+
+message UpdateStockResponse {
+  repeated Product updated_products = 1;
+}
+
+message GetCategoryDetailsRequest {
+  int64 category_id = 1;
+}
+
+message GetCategoryDetailsResponse {
+  Category category = 1;
+}
+
+message ListCategoriesInternalRequest {
+  PageInfoRequest page_info = 1;
+  optional int64 parent_category_id = 2;
+}
+
+message ListCategoriesInternalResponse {
+  repeated Category categories = 1;
+  PageInfoResponse page_info = 2;
+}
+
+message ProductAvailabilityItemInput {
+  int64 product_id = 1;
+  int32 required_quantity = 2;
+}
+
+message CheckProductsAvailabilityRequest {
+  repeated ProductAvailabilityItemInput items = 1;
+}
+
+message ProductAvailabilityStatus {
+  int64 product_id = 1;
+  bool is_available = 2;
+  int32 available_quantity = 3;
+  double current_price = 4;
+  string name = 5;
+  optional string reason_not_available = 6;
+}
+
+message CheckProductsAvailabilityResponse {
+  repeated ProductAvailabilityStatus statuses = 1;
+}
