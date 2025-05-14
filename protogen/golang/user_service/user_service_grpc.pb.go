@@ -27,6 +27,7 @@ const (
 	UserService_Logout_FullMethodName        = "/proto.UserService/Logout"
 	UserService_GetUserById_FullMethodName   = "/proto.UserService/GetUserById"
 	UserService_GetAllUsers_FullMethodName   = "/proto.UserService/GetAllUsers"
+	UserService_GetMyProfile_FullMethodName  = "/proto.UserService/GetMyProfile"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -40,6 +41,7 @@ type UserServiceClient interface {
 	Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*MessageResponse, error)
 	GetUserById(ctx context.Context, in *UserIdRequest, opts ...grpc.CallOption) (*UserResponse, error)
 	GetAllUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UsersResponse, error)
+	GetMyProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserResponse, error)
 }
 
 type userServiceClient struct {
@@ -120,6 +122,16 @@ func (c *userServiceClient) GetAllUsers(ctx context.Context, in *emptypb.Empty, 
 	return out, nil
 }
 
+func (c *userServiceClient) GetMyProfile(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, UserService_GetMyProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -131,6 +143,7 @@ type UserServiceServer interface {
 	Logout(context.Context, *emptypb.Empty) (*MessageResponse, error)
 	GetUserById(context.Context, *UserIdRequest) (*UserResponse, error)
 	GetAllUsers(context.Context, *emptypb.Empty) (*UsersResponse, error)
+	GetMyProfile(context.Context, *emptypb.Empty) (*UserResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -161,6 +174,9 @@ func (UnimplementedUserServiceServer) GetUserById(context.Context, *UserIdReques
 }
 func (UnimplementedUserServiceServer) GetAllUsers(context.Context, *emptypb.Empty) (*UsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllUsers not implemented")
+}
+func (UnimplementedUserServiceServer) GetMyProfile(context.Context, *emptypb.Empty) (*UserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMyProfile not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -309,6 +325,24 @@ func _UserService_GetAllUsers_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetMyProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetMyProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetMyProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetMyProfile(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -343,6 +377,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllUsers",
 			Handler:    _UserService_GetAllUsers_Handler,
+		},
+		{
+			MethodName: "GetMyProfile",
+			Handler:    _UserService_GetMyProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

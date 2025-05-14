@@ -459,7 +459,7 @@ const file_user_service_user_service_proto_rawDesc = "" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x17\n" +
 	"\arole_id\x18\x04 \x01(\x05R\x06roleId\":\n" +
 	"\rUsersResponse\x12)\n" +
-	"\x05users\x18\x01 \x03(\v2\x13.proto.UserResponseR\x05users2\xa0\x05\n" +
+	"\x05users\x18\x01 \x03(\v2\x13.proto.UserResponseR\x05users2\xff\x05\n" +
 	"\vUserService\x12M\n" +
 	"\bRegister\x12\x16.proto.RegisterRequest\x1a\x13.proto.AuthResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/register\x12D\n" +
 	"\x05Login\x12\x13.proto.LoginRequest\x1a\x13.proto.AuthResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/login\x12h\n" +
@@ -483,7 +483,11 @@ const file_user_service_user_service_proto_rawDesc = "" +
 	"\vGetAllUsers\x12\x16.google.protobuf.Empty\x1a\x14.proto.UsersResponse\"#\x92A\x12b\x10\n" +
 	"\x0e\n" +
 	"\n" +
-	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\b\x12\x06/usersB{\x92Ai\x12\x13\n" +
+	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\b\x12\x06/users\x12]\n" +
+	"\fGetMyProfile\x12\x16.google.protobuf.Empty\x1a\x13.proto.UserResponse\" \x92A\x12b\x10\n" +
+	"\x0e\n" +
+	"\n" +
+	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\x05\x12\x03/meB{\x92Ai\x12\x13\n" +
 	"\fUser Service2\x031.0Z@\n" +
 	">\n" +
 	"\n" +
@@ -525,15 +529,17 @@ var file_user_service_user_service_proto_depIdxs = []int32{
 	8, // 5: proto.UserService.Logout:input_type -> google.protobuf.Empty
 	3, // 6: proto.UserService.GetUserById:input_type -> proto.UserIdRequest
 	8, // 7: proto.UserService.GetAllUsers:input_type -> google.protobuf.Empty
-	5, // 8: proto.UserService.Register:output_type -> proto.AuthResponse
-	5, // 9: proto.UserService.Login:output_type -> proto.AuthResponse
-	4, // 10: proto.UserService.DeleteAccount:output_type -> proto.MessageResponse
-	4, // 11: proto.UserService.EditAccount:output_type -> proto.MessageResponse
-	4, // 12: proto.UserService.Logout:output_type -> proto.MessageResponse
-	6, // 13: proto.UserService.GetUserById:output_type -> proto.UserResponse
-	7, // 14: proto.UserService.GetAllUsers:output_type -> proto.UsersResponse
-	8, // [8:15] is the sub-list for method output_type
-	1, // [1:8] is the sub-list for method input_type
+	8, // 8: proto.UserService.GetMyProfile:input_type -> google.protobuf.Empty
+	5, // 9: proto.UserService.Register:output_type -> proto.AuthResponse
+	5, // 10: proto.UserService.Login:output_type -> proto.AuthResponse
+	4, // 11: proto.UserService.DeleteAccount:output_type -> proto.MessageResponse
+	4, // 12: proto.UserService.EditAccount:output_type -> proto.MessageResponse
+	4, // 13: proto.UserService.Logout:output_type -> proto.MessageResponse
+	6, // 14: proto.UserService.GetUserById:output_type -> proto.UserResponse
+	7, // 15: proto.UserService.GetAllUsers:output_type -> proto.UsersResponse
+	6, // 16: proto.UserService.GetMyProfile:output_type -> proto.UserResponse
+	9, // [9:17] is the sub-list for method output_type
+	1, // [1:9] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name

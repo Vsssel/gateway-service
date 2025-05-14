@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"gateway/middleware"
-	_ "gateway/middleware"
 	ordersvc "gateway/protogen/golang/order_service"
 	product "gateway/protogen/golang/product_service"
 	usersvc "gateway/protogen/golang/user_service"

@@ -38,27 +38,22 @@ message ErrorResponse {
   string message = 2;
 }
 
-// Request message for pagination
 message PageInfoRequest {
   int32 page_size = 1;
   string page_token = 2;
 }
 
-// Response message for pagination
 message PageInfoResponse {
   string next_page_token = 1;
   int32 total_size = 2;
 }
 
-// Represents an empty request or response.
 message Empty {}
 
-// Represents a request with a single ID.
 message IdRequest {
   int64 id = 1;
 }
 
-// Represents a response indicating success.
 message SuccessResponse {
   bool success = 1;
   optional string message = 2;
