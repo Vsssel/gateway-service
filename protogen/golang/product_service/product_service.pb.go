@@ -7,7 +7,6 @@
 package proto
 
 import (
-	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -293,7 +292,6 @@ func (x *ErrorResponse) GetMessage() string {
 	return ""
 }
 
-// Request message for pagination
 type PageInfoRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PageSize      int32                  `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
@@ -346,7 +344,6 @@ func (x *PageInfoRequest) GetPageToken() string {
 	return ""
 }
 
-// Response message for pagination
 type PageInfoResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NextPageToken string                 `protobuf:"bytes,1,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
@@ -399,7 +396,6 @@ func (x *PageInfoResponse) GetTotalSize() int32 {
 	return 0
 }
 
-// Represents an empty request or response.
 type Empty struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -436,7 +432,6 @@ func (*Empty) Descriptor() ([]byte, []int) {
 	return file_product_service_product_service_proto_rawDescGZIP(), []int{5}
 }
 
-// Represents a request with a single ID.
 type IdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -481,7 +476,6 @@ func (x *IdRequest) GetId() int64 {
 	return 0
 }
 
-// Represents a response indicating success.
 type SuccessResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
@@ -1311,7 +1305,7 @@ var File_product_service_product_service_proto protoreflect.FileDescriptor
 const file_product_service_product_service_proto_rawDesc = "" +
 	"\n" +
 	"%product_service/product_service.proto\x12\n" +
-	"product.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\xa5\x02\n" +
+	"product.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\"\xa5\x02\n" +
 	"\bCategory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12%\n" +

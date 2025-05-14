@@ -74,22 +74,21 @@ message UsersResponse {
 service UserService {
   rpc Register(RegisterRequest) returns (AuthResponse) {
     option (google.api.http) = {
-      post: "/register"
+      post: "/auth/register"
       body: "*"
     };
   }
 
   rpc Login(LoginRequest) returns (AuthResponse) {
     option (google.api.http) = {
-      post: "/login"
+      post: "/auth/login"
       body: "*"
     };
   }
 
   rpc DeleteAccount(google.protobuf.Empty) returns (MessageResponse) {
     option (google.api.http) = {
-      post: "/delete"
-      body: "*"
+      delete: "/me"
     };
 
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -104,7 +103,7 @@ service UserService {
 
   rpc EditAccount(EditUserRequest) returns (MessageResponse) {
     option (google.api.http) = {
-      post: "/edit"
+      put: "/me"
       body: "*"
     };
 
@@ -121,7 +120,6 @@ service UserService {
   rpc Logout(google.protobuf.Empty) returns (MessageResponse) {
     option (google.api.http) = {
       post: "/logout"
-      body: "*"
     };
 
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
