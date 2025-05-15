@@ -7,6 +7,7 @@
 package proto
 
 import (
+	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -188,6 +189,50 @@ func (x *PreviewRequest) GetCourierCompanyId() uint32 {
 	return 0
 }
 
+type MyOrdersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Orders        []*OrderInfoResponse   `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MyOrdersResponse) Reset() {
+	*x = MyOrdersResponse{}
+	mi := &file_order_service_order_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MyOrdersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MyOrdersResponse) ProtoMessage() {}
+
+func (x *MyOrdersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_order_service_order_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MyOrdersResponse.ProtoReflect.Descriptor instead.
+func (*MyOrdersResponse) Descriptor() ([]byte, []int) {
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *MyOrdersResponse) GetOrders() []*OrderInfoResponse {
+	if x != nil {
+		return x.Orders
+	}
+	return nil
+}
+
 type PreviewResponse struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
 	ProducerWalletAddress string                 `protobuf:"bytes,1,opt,name=producerWalletAddress,proto3" json:"producerWalletAddress,omitempty"`
@@ -202,7 +247,7 @@ type PreviewResponse struct {
 
 func (x *PreviewResponse) Reset() {
 	*x = PreviewResponse{}
-	mi := &file_order_service_order_service_proto_msgTypes[3]
+	mi := &file_order_service_order_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -214,7 +259,7 @@ func (x *PreviewResponse) String() string {
 func (*PreviewResponse) ProtoMessage() {}
 
 func (x *PreviewResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[3]
+	mi := &file_order_service_order_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -227,7 +272,7 @@ func (x *PreviewResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PreviewResponse.ProtoReflect.Descriptor instead.
 func (*PreviewResponse) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{3}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PreviewResponse) GetProducerWalletAddress() string {
@@ -288,7 +333,7 @@ type OrderRequest struct {
 
 func (x *OrderRequest) Reset() {
 	*x = OrderRequest{}
-	mi := &file_order_service_order_service_proto_msgTypes[4]
+	mi := &file_order_service_order_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -300,7 +345,7 @@ func (x *OrderRequest) String() string {
 func (*OrderRequest) ProtoMessage() {}
 
 func (x *OrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[4]
+	mi := &file_order_service_order_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,7 +358,7 @@ func (x *OrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderRequest.ProtoReflect.Descriptor instead.
 func (*OrderRequest) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{4}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *OrderRequest) GetAuthToken() string {
@@ -385,7 +430,7 @@ type OrderResponse struct {
 
 func (x *OrderResponse) Reset() {
 	*x = OrderResponse{}
-	mi := &file_order_service_order_service_proto_msgTypes[5]
+	mi := &file_order_service_order_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -397,7 +442,7 @@ func (x *OrderResponse) String() string {
 func (*OrderResponse) ProtoMessage() {}
 
 func (x *OrderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[5]
+	mi := &file_order_service_order_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -410,7 +455,7 @@ func (x *OrderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderResponse.ProtoReflect.Descriptor instead.
 func (*OrderResponse) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{5}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *OrderResponse) GetId() uint32 {
@@ -468,7 +513,7 @@ type OrderInfoResponse struct {
 
 func (x *OrderInfoResponse) Reset() {
 	*x = OrderInfoResponse{}
-	mi := &file_order_service_order_service_proto_msgTypes[6]
+	mi := &file_order_service_order_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -480,7 +525,7 @@ func (x *OrderInfoResponse) String() string {
 func (*OrderInfoResponse) ProtoMessage() {}
 
 func (x *OrderInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[6]
+	mi := &file_order_service_order_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -493,7 +538,7 @@ func (x *OrderInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderInfoResponse.ProtoReflect.Descriptor instead.
 func (*OrderInfoResponse) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{6}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *OrderInfoResponse) GetId() uint32 {
@@ -589,7 +634,7 @@ type CountriesResponse struct {
 
 func (x *CountriesResponse) Reset() {
 	*x = CountriesResponse{}
-	mi := &file_order_service_order_service_proto_msgTypes[7]
+	mi := &file_order_service_order_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -601,7 +646,7 @@ func (x *CountriesResponse) String() string {
 func (*CountriesResponse) ProtoMessage() {}
 
 func (x *CountriesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[7]
+	mi := &file_order_service_order_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -614,7 +659,7 @@ func (x *CountriesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountriesResponse.ProtoReflect.Descriptor instead.
 func (*CountriesResponse) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{7}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CountriesResponse) GetCountries() []*Country {
@@ -634,7 +679,7 @@ type Country struct {
 
 func (x *Country) Reset() {
 	*x = Country{}
-	mi := &file_order_service_order_service_proto_msgTypes[8]
+	mi := &file_order_service_order_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -646,7 +691,7 @@ func (x *Country) String() string {
 func (*Country) ProtoMessage() {}
 
 func (x *Country) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[8]
+	mi := &file_order_service_order_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -659,7 +704,7 @@ func (x *Country) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Country.ProtoReflect.Descriptor instead.
 func (*Country) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{8}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Country) GetId() uint32 {
@@ -685,7 +730,7 @@ type CouriersForCountryResponse struct {
 
 func (x *CouriersForCountryResponse) Reset() {
 	*x = CouriersForCountryResponse{}
-	mi := &file_order_service_order_service_proto_msgTypes[9]
+	mi := &file_order_service_order_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -697,7 +742,7 @@ func (x *CouriersForCountryResponse) String() string {
 func (*CouriersForCountryResponse) ProtoMessage() {}
 
 func (x *CouriersForCountryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[9]
+	mi := &file_order_service_order_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -710,7 +755,7 @@ func (x *CouriersForCountryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CouriersForCountryResponse.ProtoReflect.Descriptor instead.
 func (*CouriersForCountryResponse) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{9}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CouriersForCountryResponse) GetCompanies() []*CourierCompany {
@@ -731,7 +776,7 @@ type CourierCompany struct {
 
 func (x *CourierCompany) Reset() {
 	*x = CourierCompany{}
-	mi := &file_order_service_order_service_proto_msgTypes[10]
+	mi := &file_order_service_order_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -743,7 +788,7 @@ func (x *CourierCompany) String() string {
 func (*CourierCompany) ProtoMessage() {}
 
 func (x *CourierCompany) ProtoReflect() protoreflect.Message {
-	mi := &file_order_service_order_service_proto_msgTypes[10]
+	mi := &file_order_service_order_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -756,7 +801,7 @@ func (x *CourierCompany) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CourierCompany.ProtoReflect.Descriptor instead.
 func (*CourierCompany) Descriptor() ([]byte, []int) {
-	return file_order_service_order_service_proto_rawDescGZIP(), []int{10}
+	return file_order_service_order_service_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CourierCompany) GetId() uint32 {
@@ -784,7 +829,7 @@ var File_order_service_order_service_proto protoreflect.FileDescriptor
 
 const file_order_service_order_service_proto_rawDesc = "" +
 	"\n" +
-	"!order_service/order_service.proto\x12\x02pb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\x1b\n" +
+	"!order_service/order_service.proto\x12\x02pb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\"+\n" +
 	"\x05Price\x12\x10\n" +
@@ -794,7 +839,9 @@ const file_order_service_order_service_proto_rawDesc = "" +
 	"\tproductId\x18\x01 \x01(\rR\tproductId\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\rR\x06amount\x12\x1c\n" +
 	"\tcountryId\x18\x03 \x01(\rR\tcountryId\x12*\n" +
-	"\x10courierCompanyId\x18\x04 \x01(\rR\x10courierCompanyId\"\xc8\x02\n" +
+	"\x10courierCompanyId\x18\x04 \x01(\rR\x10courierCompanyId\"A\n" +
+	"\x10MyOrdersResponse\x12-\n" +
+	"\x06orders\x18\x01 \x03(\v2\x15.pb.OrderInfoResponseR\x06orders\"\xc8\x02\n" +
 	"\x0fPreviewResponse\x124\n" +
 	"\x15producerWalletAddress\x18\x01 \x01(\tR\x15producerWalletAddress\x122\n" +
 	"\x14courierWalletAddress\x18\x02 \x01(\tR\x14courierWalletAddress\x12/\n" +
@@ -847,12 +894,17 @@ const file_order_service_order_service_proto_rawDesc = "" +
 	"\x0eCourierCompany\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12/\n" +
-	"\rdeliveryPrice\x18\x03 \x01(\v2\t.pb.PriceR\rdeliveryPrice2\xda\x01\n" +
+	"\rdeliveryPrice\x18\x03 \x01(\v2\t.pb.PriceR\rdeliveryPrice2\xbd\x02\n" +
 	"\fOrderService\x12G\n" +
 	"\aPreview\x12\x12.pb.PreviewRequest\x1a\x13.pb.PreviewResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/preview\x12?\n" +
 	"\x05Order\x12\x10.pb.OrderRequest\x1a\x11.pb.OrderResponse\"\x11\x82\xd3\xe4\x93\x02\v:\x01*\"\x06/order\x12@\n" +
 	"\x04Info\x12\r.pb.IdRequest\x1a\x15.pb.OrderInfoResponse\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
-	"/info/{id}2\xc8\x01\n" +
+	"/info/{id}\x12a\n" +
+	"\bMyOrders\x12\x16.google.protobuf.Empty\x1a\x14.pb.MyOrdersResponse\"'\x92A\x12b\x10\n" +
+	"\x0e\n" +
+	"\n" +
+	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\f\x12\n" +
+	"/me/orders2\xc8\x01\n" +
 	"\x0fResourceService\x12N\n" +
 	"\tCountries\x12\x16.google.protobuf.Empty\x1a\x15.pb.CountriesResponse\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
 	"/countries\x12e\n" +
@@ -870,49 +922,53 @@ func file_order_service_order_service_proto_rawDescGZIP() []byte {
 	return file_order_service_order_service_proto_rawDescData
 }
 
-var file_order_service_order_service_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_order_service_order_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_order_service_order_service_proto_goTypes = []any{
 	(*IdRequest)(nil),                  // 0: pb.IdRequest
 	(*Price)(nil),                      // 1: pb.Price
 	(*PreviewRequest)(nil),             // 2: pb.PreviewRequest
-	(*PreviewResponse)(nil),            // 3: pb.PreviewResponse
-	(*OrderRequest)(nil),               // 4: pb.OrderRequest
-	(*OrderResponse)(nil),              // 5: pb.OrderResponse
-	(*OrderInfoResponse)(nil),          // 6: pb.OrderInfoResponse
-	(*CountriesResponse)(nil),          // 7: pb.CountriesResponse
-	(*Country)(nil),                    // 8: pb.Country
-	(*CouriersForCountryResponse)(nil), // 9: pb.CouriersForCountryResponse
-	(*CourierCompany)(nil),             // 10: pb.CourierCompany
-	(*timestamppb.Timestamp)(nil),      // 11: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),              // 12: google.protobuf.Empty
+	(*MyOrdersResponse)(nil),           // 3: pb.MyOrdersResponse
+	(*PreviewResponse)(nil),            // 4: pb.PreviewResponse
+	(*OrderRequest)(nil),               // 5: pb.OrderRequest
+	(*OrderResponse)(nil),              // 6: pb.OrderResponse
+	(*OrderInfoResponse)(nil),          // 7: pb.OrderInfoResponse
+	(*CountriesResponse)(nil),          // 8: pb.CountriesResponse
+	(*Country)(nil),                    // 9: pb.Country
+	(*CouriersForCountryResponse)(nil), // 10: pb.CouriersForCountryResponse
+	(*CourierCompany)(nil),             // 11: pb.CourierCompany
+	(*timestamppb.Timestamp)(nil),      // 12: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),              // 13: google.protobuf.Empty
 }
 var file_order_service_order_service_proto_depIdxs = []int32{
-	1,  // 0: pb.PreviewResponse.productsPrice:type_name -> pb.Price
-	1,  // 1: pb.PreviewResponse.deliveryPrice:type_name -> pb.Price
-	1,  // 2: pb.PreviewResponse.totalPrice:type_name -> pb.Price
-	11, // 3: pb.PreviewResponse.deliveryDate:type_name -> google.protobuf.Timestamp
-	11, // 4: pb.OrderResponse.deliveryDate:type_name -> google.protobuf.Timestamp
-	1,  // 5: pb.OrderResponse.price:type_name -> pb.Price
-	11, // 6: pb.OrderInfoResponse.deliveryDate:type_name -> google.protobuf.Timestamp
-	1,  // 7: pb.OrderInfoResponse.price:type_name -> pb.Price
-	8,  // 8: pb.CountriesResponse.countries:type_name -> pb.Country
-	10, // 9: pb.CouriersForCountryResponse.companies:type_name -> pb.CourierCompany
-	1,  // 10: pb.CourierCompany.deliveryPrice:type_name -> pb.Price
-	2,  // 11: pb.OrderService.Preview:input_type -> pb.PreviewRequest
-	4,  // 12: pb.OrderService.Order:input_type -> pb.OrderRequest
-	0,  // 13: pb.OrderService.Info:input_type -> pb.IdRequest
-	12, // 14: pb.ResourceService.Countries:input_type -> google.protobuf.Empty
-	0,  // 15: pb.ResourceService.CouriersForCountry:input_type -> pb.IdRequest
-	3,  // 16: pb.OrderService.Preview:output_type -> pb.PreviewResponse
-	5,  // 17: pb.OrderService.Order:output_type -> pb.OrderResponse
-	6,  // 18: pb.OrderService.Info:output_type -> pb.OrderInfoResponse
-	7,  // 19: pb.ResourceService.Countries:output_type -> pb.CountriesResponse
-	9,  // 20: pb.ResourceService.CouriersForCountry:output_type -> pb.CouriersForCountryResponse
-	16, // [16:21] is the sub-list for method output_type
-	11, // [11:16] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	7,  // 0: pb.MyOrdersResponse.orders:type_name -> pb.OrderInfoResponse
+	1,  // 1: pb.PreviewResponse.productsPrice:type_name -> pb.Price
+	1,  // 2: pb.PreviewResponse.deliveryPrice:type_name -> pb.Price
+	1,  // 3: pb.PreviewResponse.totalPrice:type_name -> pb.Price
+	12, // 4: pb.PreviewResponse.deliveryDate:type_name -> google.protobuf.Timestamp
+	12, // 5: pb.OrderResponse.deliveryDate:type_name -> google.protobuf.Timestamp
+	1,  // 6: pb.OrderResponse.price:type_name -> pb.Price
+	12, // 7: pb.OrderInfoResponse.deliveryDate:type_name -> google.protobuf.Timestamp
+	1,  // 8: pb.OrderInfoResponse.price:type_name -> pb.Price
+	9,  // 9: pb.CountriesResponse.countries:type_name -> pb.Country
+	11, // 10: pb.CouriersForCountryResponse.companies:type_name -> pb.CourierCompany
+	1,  // 11: pb.CourierCompany.deliveryPrice:type_name -> pb.Price
+	2,  // 12: pb.OrderService.Preview:input_type -> pb.PreviewRequest
+	5,  // 13: pb.OrderService.Order:input_type -> pb.OrderRequest
+	0,  // 14: pb.OrderService.Info:input_type -> pb.IdRequest
+	13, // 15: pb.OrderService.MyOrders:input_type -> google.protobuf.Empty
+	13, // 16: pb.ResourceService.Countries:input_type -> google.protobuf.Empty
+	0,  // 17: pb.ResourceService.CouriersForCountry:input_type -> pb.IdRequest
+	4,  // 18: pb.OrderService.Preview:output_type -> pb.PreviewResponse
+	6,  // 19: pb.OrderService.Order:output_type -> pb.OrderResponse
+	7,  // 20: pb.OrderService.Info:output_type -> pb.OrderInfoResponse
+	3,  // 21: pb.OrderService.MyOrders:output_type -> pb.MyOrdersResponse
+	8,  // 22: pb.ResourceService.Countries:output_type -> pb.CountriesResponse
+	10, // 23: pb.ResourceService.CouriersForCountry:output_type -> pb.CouriersForCountryResponse
+	18, // [18:24] is the sub-list for method output_type
+	12, // [12:18] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_order_service_order_service_proto_init() }
@@ -926,7 +982,7 @@ func file_order_service_order_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_service_order_service_proto_rawDesc), len(file_order_service_order_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

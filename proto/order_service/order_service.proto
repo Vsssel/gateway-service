@@ -6,6 +6,8 @@ option go_package = "gateway/proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
 
 service OrderService {
   rpc Preview (PreviewRequest) returns (PreviewResponse) {
@@ -27,6 +29,22 @@ service OrderService {
       get: "/info/{id}"
     };
   }
+
+  rpc MyOrders (google.protobuf.Empty) returns (MyOrdersResponse){
+    option (google.api.http) = {
+      get: "/me/orders"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      security: {
+        security_requirement: {
+          key: "BearerAuth"
+          value: {}
+        }
+      }
+    };
+  };
+
 }
 
 service ResourceService {
@@ -57,6 +75,10 @@ message PreviewRequest {
   uint32 amount = 2;
   uint32 countryId = 3;
   uint32 courierCompanyId = 4;
+}
+
+message MyOrdersResponse {
+  repeated OrderInfoResponse orders = 1;
 }
 
 message PreviewResponse {

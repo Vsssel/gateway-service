@@ -362,6 +362,33 @@
         ]
       }
     },
+    "/me/orders": {
+      "get": {
+        "operationId": "OrderService_MyOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbMyOrdersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "OrderService"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/order": {
       "post": {
         "operationId": "OrderService_Order",
@@ -694,6 +721,18 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/pbCourierCompany"
+          }
+        }
+      }
+    },
+    "pbMyOrdersResponse": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pbOrderInfoResponse"
           }
         }
       }
