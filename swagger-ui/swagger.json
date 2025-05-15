@@ -248,33 +248,6 @@
         ]
       }
     },
-    "/logout": {
-      "post": {
-        "operationId": "UserService_Logout",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/protoMessageResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "UserService"
-        ],
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
     "/me": {
       "get": {
         "operationId": "UserService_GetMyProfile",
@@ -352,6 +325,33 @@
             }
           }
         ],
+        "tags": [
+          "UserService"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/me/logout": {
+      "post": {
+        "operationId": "UserService_Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/protoMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "UserService"
         ],
@@ -787,9 +787,6 @@
     "pbOrderRequest": {
       "type": "object",
       "properties": {
-        "authToken": {
-          "type": "string"
-        },
         "productId": {
           "type": "integer",
           "format": "int64"

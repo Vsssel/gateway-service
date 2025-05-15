@@ -319,14 +319,13 @@ func (x *PreviewResponse) GetDeliveryDate() *timestamppb.Timestamp {
 
 type OrderRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	AuthToken        string                 `protobuf:"bytes,1,opt,name=authToken,proto3" json:"authToken,omitempty"`
-	ProductId        uint32                 `protobuf:"varint,2,opt,name=productId,proto3" json:"productId,omitempty"`
-	Amount           uint32                 `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	CountryId        uint32                 `protobuf:"varint,4,opt,name=countryId,proto3" json:"countryId,omitempty"`
-	City             string                 `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
-	PostalCode       string                 `protobuf:"bytes,6,opt,name=postalCode,proto3" json:"postalCode,omitempty"`
-	CourierCompanyId uint32                 `protobuf:"varint,7,opt,name=courierCompanyId,proto3" json:"courierCompanyId,omitempty"`
-	WalletPrivateKey string                 `protobuf:"bytes,8,opt,name=walletPrivateKey,proto3" json:"walletPrivateKey,omitempty"`
+	ProductId        uint32                 `protobuf:"varint,1,opt,name=productId,proto3" json:"productId,omitempty"`
+	Amount           uint32                 `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
+	CountryId        uint32                 `protobuf:"varint,3,opt,name=countryId,proto3" json:"countryId,omitempty"`
+	City             string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
+	PostalCode       string                 `protobuf:"bytes,5,opt,name=postalCode,proto3" json:"postalCode,omitempty"`
+	CourierCompanyId uint32                 `protobuf:"varint,6,opt,name=courierCompanyId,proto3" json:"courierCompanyId,omitempty"`
+	WalletPrivateKey string                 `protobuf:"bytes,7,opt,name=walletPrivateKey,proto3" json:"walletPrivateKey,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -359,13 +358,6 @@ func (x *OrderRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use OrderRequest.ProtoReflect.Descriptor instead.
 func (*OrderRequest) Descriptor() ([]byte, []int) {
 	return file_order_service_order_service_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *OrderRequest) GetAuthToken() string {
-	if x != nil {
-		return x.AuthToken
-	}
-	return ""
 }
 
 func (x *OrderRequest) GetProductId() uint32 {
@@ -850,18 +842,17 @@ const file_order_service_order_service_proto_rawDesc = "" +
 	"\n" +
 	"totalPrice\x18\x05 \x01(\v2\t.pb.PriceR\n" +
 	"totalPrice\x12>\n" +
-	"\fdeliveryDate\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\fdeliveryDate\"\x8c\x02\n" +
+	"\fdeliveryDate\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\fdeliveryDate\"\xee\x01\n" +
 	"\fOrderRequest\x12\x1c\n" +
-	"\tauthToken\x18\x01 \x01(\tR\tauthToken\x12\x1c\n" +
-	"\tproductId\x18\x02 \x01(\rR\tproductId\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\rR\x06amount\x12\x1c\n" +
-	"\tcountryId\x18\x04 \x01(\rR\tcountryId\x12\x12\n" +
-	"\x04city\x18\x05 \x01(\tR\x04city\x12\x1e\n" +
+	"\tproductId\x18\x01 \x01(\rR\tproductId\x12\x16\n" +
+	"\x06amount\x18\x02 \x01(\rR\x06amount\x12\x1c\n" +
+	"\tcountryId\x18\x03 \x01(\rR\tcountryId\x12\x12\n" +
+	"\x04city\x18\x04 \x01(\tR\x04city\x12\x1e\n" +
 	"\n" +
-	"postalCode\x18\x06 \x01(\tR\n" +
+	"postalCode\x18\x05 \x01(\tR\n" +
 	"postalCode\x12*\n" +
-	"\x10courierCompanyId\x18\a \x01(\rR\x10courierCompanyId\x12*\n" +
-	"\x10walletPrivateKey\x18\b \x01(\tR\x10walletPrivateKey\"\xe0\x01\n" +
+	"\x10courierCompanyId\x18\x06 \x01(\rR\x10courierCompanyId\x12*\n" +
+	"\x10walletPrivateKey\x18\a \x01(\tR\x10walletPrivateKey\"\xe0\x01\n" +
 	"\rOrderResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12.\n" +
 	"\x12productsPaymentHex\x18\x02 \x01(\tR\x12productsPaymentHex\x12.\n" +

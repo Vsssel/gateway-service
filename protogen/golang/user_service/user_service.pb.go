@@ -459,7 +459,7 @@ const file_user_service_user_service_proto_rawDesc = "" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x17\n" +
 	"\arole_id\x18\x04 \x01(\x05R\x06roleId\":\n" +
 	"\rUsersResponse\x12)\n" +
-	"\x05users\x18\x01 \x03(\v2\x13.proto.UserResponseR\x05users2\xfd\x05\n" +
+	"\x05users\x18\x01 \x03(\v2\x13.proto.UserResponseR\x05users2\x80\x06\n" +
 	"\vUserService\x12R\n" +
 	"\bRegister\x12\x16.proto.RegisterRequest\x1a\x13.proto.AuthResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/auth/register\x12I\n" +
 	"\x05Login\x12\x13.proto.LoginRequest\x1a\x13.proto.AuthResponse\"\x16\x82\xd3\xe4\x93\x02\x10:\x01*\"\v/auth/login\x12a\n" +
@@ -470,11 +470,12 @@ const file_user_service_user_service_proto_rawDesc = "" +
 	"\vEditAccount\x12\x16.proto.EditUserRequest\x1a\x16.proto.MessageResponse\"#\x92A\x12b\x10\n" +
 	"\x0e\n" +
 	"\n" +
-	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\b:\x01*\x1a\x03/me\x12^\n" +
-	"\x06Logout\x12\x16.google.protobuf.Empty\x1a\x16.proto.MessageResponse\"$\x92A\x12b\x10\n" +
+	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\b:\x01*\x1a\x03/me\x12a\n" +
+	"\x06Logout\x12\x16.google.protobuf.Empty\x1a\x16.proto.MessageResponse\"'\x92A\x12b\x10\n" +
 	"\x0e\n" +
 	"\n" +
-	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\t\"\a/logout\x12g\n" +
+	"BearerAuth\x12\x00\x82\xd3\xe4\x93\x02\f\"\n" +
+	"/me/logout\x12g\n" +
 	"\vGetUserById\x12\x14.proto.UserIdRequest\x1a\x13.proto.UserResponse\"-\x92A\x12b\x10\n" +
 	"\x0e\n" +
 	"\n" +

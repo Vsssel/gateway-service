@@ -91,14 +91,13 @@ message PreviewResponse {
 }
 
 message OrderRequest {
-  string authToken = 1;
-  uint32 productId = 2;
-  uint32 amount = 3;
-  uint32 countryId = 4;
-  string city = 5;
-  string postalCode = 6;
-  uint32 courierCompanyId = 7;
-  string walletPrivateKey = 8;
+  uint32 productId = 1;
+  uint32 amount = 2;
+  uint32 countryId = 3;
+  string city = 4;
+  string postalCode = 5;
+  uint32 courierCompanyId = 6;
+  string walletPrivateKey = 7;
 }
 
 message OrderResponse {
